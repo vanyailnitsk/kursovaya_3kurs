@@ -6,7 +6,7 @@
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/styles/userCabinet.css">
-    <script src="/scripts/userCabinet.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -58,5 +58,6 @@
             </form>
         </div>
     </div>
+    <script src="/scripts/userCabinet.js"></script>
 </body>
 </html>

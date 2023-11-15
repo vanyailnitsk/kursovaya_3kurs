@@ -81,4 +81,17 @@ public class Expense {
         return new SimpleDateFormat("dd.MM.yyyy HH:mm").format(timestamp);
     }
 
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", amount=" + amount +
+                ", source='" + source + '\'' +
+                ", categoryId=" + categoryId +
+                ", category='" + category + '\'' +
+                ", timestamp=" + timestamp +
+                ", dateFormatted='" + dateFormatted + '\'' +
+                '}';
+    }
 }
