@@ -4,6 +4,8 @@
 <head>
     <title>Пользователи</title>
     <link rel="stylesheet" href="styles/users.css">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
 </head>
 <body>
     <div style="text-align: center">
@@ -16,7 +18,7 @@
                 <th>Password</th>
             </tr>
             <c:forEach items="${users}" var="user">
-            <tr>
+            <tr onclick="window.location.href='http://localhost:8000/users/${user.id}'" style="cursor: pointer;">
                 <td>${user.id}</td>
                 <td>${user.name}</td>
                 <td>${user.login}</td>

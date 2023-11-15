@@ -4,6 +4,8 @@
 <head>
     <title>История доходов/расходов</title>
     <link rel="stylesheet" href="/styles/finance-history.css">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
 </head>
 <body>
     <div style="text-align: center">
@@ -18,7 +20,6 @@
             </tr>
             <c:forEach items="${expenses}" var="expense">
             <tr>
-                <td>${expense.id}</td>
                 <td>${expense.amount}</td>
                 <td>${expense.source}</td>
                 <td>${expense.category}</td>

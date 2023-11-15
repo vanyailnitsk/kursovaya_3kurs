@@ -5,19 +5,20 @@ import java.text.SimpleDateFormat;
 
 public class Expense {
     private int id;
-    private int user_id;
+    private int userId;
     private int amount;
     private String source;
-    private int category;
+    private int categoryId;
+    private String category;
     private Timestamp timestamp;
     private String dateFormatted;
 
-    public Expense(int id, int user_id, int amount, String source, int category, Timestamp timestamp) {
+    public Expense(int id, int user_id, int amount, String source, int categoryId, Timestamp timestamp) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = user_id;
         this.amount = amount;
         this.source = source;
-        this.category = category;
+        this.categoryId = categoryId;
         this.timestamp = timestamp;
     }
 
@@ -29,12 +30,12 @@ public class Expense {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 
     public int getAmount() {
@@ -53,14 +54,21 @@ public class Expense {
         this.source = source;
     }
 
-    public int getCategory() {
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
     }
-
     public Timestamp getTimestamp() {
         return timestamp;
     }
@@ -72,4 +80,5 @@ public class Expense {
     public String getDateFormatted() {
         return new SimpleDateFormat("dd.MM.yyyy HH:mm").format(timestamp);
     }
+
 }
