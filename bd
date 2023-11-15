@@ -1,0 +1,59 @@
+user:
+	id
+	name
+	login
+	password
+income:
+	id
+	user_id
+	amount
+	source
+	timestamp
+	in_category
+expense:
+	id
+	amount
+	description
+	timestamp
+	exp_ategory
+income_category:
+	id
+	name
+expense_category:
+	id
+	name
+	
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY ,
+    name VARCHAR(50) NOT NULL,
+    login VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL
+);
+CREATE TABLE income_category(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL
+);
+CREATE TABLE income_category(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL
+);
+CREATE TABLE expense_category(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL
+);
+CREATE TABLE income (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    amount INTEGER NOT NULL,
+    source VARCHAR(50) NOT NULL,
+    category INTEGER REFERENCES income_category(id),
+    timestamp TIMESTAMP NOT NULL
+);
+CREATE TABLE expense (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    amount INTEGER NOT NULL,
+    source VARCHAR(50) NOT NULL,
+    category INTEGER REFERENCES expense_category(id),
+    timestamp TIMESTAMP NOT NULL
+);
