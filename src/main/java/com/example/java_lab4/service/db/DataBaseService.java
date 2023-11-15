@@ -4,13 +4,13 @@ import java.sql.*;
 
 public class DataBaseService {
 
-    private Connection getConnect(){
+    public Connection getConnect(){
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        final String url = "jdbc:postgresql://localhost:5432/java_lr4";
+        final String url = "jdbc:postgresql://localhost:5432/java_lr4?characterEncoding=UTF-8";
         final String user = "postgres";
         final String password = "admin";
         Connection conn = null;
