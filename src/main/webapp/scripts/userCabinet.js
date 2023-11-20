@@ -45,6 +45,7 @@ function submitExpenseForm(event) {
         })
         .then(data => {
             document.getElementById('message').innerHTML = 'Запись успешно добавлена! '
+            setTimeout(() => location.reload(),1000)
         })
         .catch(error => {
             console.error('Error:', error.message);
