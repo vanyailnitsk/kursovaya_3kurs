@@ -38,7 +38,8 @@
                     <td>${expense.category}</td>
                     <td>
                         <button class="edit-button">Изменить</button>
-                        <button class="delete-button">Удалить</button>
+                        <button class="delete-button" type="submit" onclick="deleteExpense(${expense.id})">Удалить
+                        </button>
                     </td>
                 </tr>
             </c:forEach>
@@ -58,7 +59,12 @@
                 <input type="text" id="source" name="source" maxlength="50" required>
 
                 <label for="category_id">Категория:</label>
-                <input type="number" id="category_id" name="category_id" required>
+                <select id=category_id name="category_id">
+                    <option value="0">Выберите категорию</option>
+                    <c:forEach items="${categories}" var="category">
+                        <option value="${category.id}">${category.name}</option>
+                    </c:forEach>
+                </select>
                 <button type="submit">Создать</button>
                 <div id="message"></div>
             </form>

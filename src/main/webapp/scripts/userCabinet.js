@@ -11,11 +11,12 @@ window.onclick = function (event) {
     var modal = document.getElementById('createExpenseModal');
     if (event.target === modal) {
         modal.style.display = 'none';
+        document.getElementById('createExpenseForm').reset();
     }
 };
 
 function submitExpenseForm(event) {
-    event.preventDefault(); // Предотвратить отправку формы (браузерная перезагрузка)
+    event.preventDefault();
 
     var form = document.getElementById('createExpenseForm');
 
@@ -53,6 +54,24 @@ function submitExpenseForm(event) {
             document.getElementById('message').innerHTML = 'Произошла ошибка! ' +error.message
         });
 
+}
+    // Найти все кнопки "Удалить" по классу
+    var deleteButtons = document.querySelectorAll('.delete-button');
+
+
+function deleteExpense(expenseId) {
+    console.log(expenseId)
+
+    fetch(`/expense?id=${expenseId}`, {
+        method: 'DELETE',
+    })
+        .then(response => response.text())
+        .then(data => {
+            location.reload()
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
 }
 
 document.getElementById('createExpenseForm').addEventListener('submit', submitExpenseForm);

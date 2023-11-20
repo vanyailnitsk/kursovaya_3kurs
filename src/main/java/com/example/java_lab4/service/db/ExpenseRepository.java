@@ -14,6 +14,7 @@ public class ExpenseRepository {
     static final String SELECT_BY_USERID = "SELECT * from expense JOIN expense_category" +
             " on expense_category.id=expense.category where expense.user_id=? ORDER BY timestamp desc";
     static final String INSERT = "INSERT INTO expense (user_id,amount,source,category,timestamp) values (?,?,?,?,NOW())";
+    static final String DELETE = "DELETE FROM expense where id=?";
 
     public ExpenseRepository() {
         this.dataBaseService = new DataBaseService();
@@ -50,6 +51,17 @@ public class ExpenseRepository {
             statement.setInt(2, expense.getAmount());
             statement.setString(3, expense.getSource());
             statement.setInt(4, expense.getCategoryId());
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    public boolean deleteExpense(Integer id) {
+        Connection conn = dataBaseService.getConnect();
+        try {
+            PreparedStatement statement = conn.prepareStatement(DELETE);
+            statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

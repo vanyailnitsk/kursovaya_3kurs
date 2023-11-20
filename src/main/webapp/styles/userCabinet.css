@@ -131,3 +131,41 @@ button {
 .modal-content form button:hover {
     background-color: #0056b3;
 }
+
+.modal-content form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+/* Дополнительные стили для option внутри select */
+.modal-content form select option {
+    font-size: 14px;
+}
+
+/* Стили для select */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+/* Стили для option */
+select option {
+    padding: 8px;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+

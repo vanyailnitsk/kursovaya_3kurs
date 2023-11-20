@@ -36,9 +36,7 @@ public class ExpenseServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        System.out.println(requestBody);
         Expense expense =  new Gson().fromJson(requestBody, Expense.class);
-        System.out.println(expense);
         if (expenseRepository.addExpense(expense)) {
             resp.getWriter().println("Success");
         }
@@ -51,8 +49,11 @@ public class ExpenseServlet extends HttpServlet {
         }
     }
 
-    @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int expenseId = (Integer) req.getAttribute("expense_id");
+        int expenseId = Integer.parseInt(req.getParameter("id"));
+        System.out.println(expenseId);
+        if (!expenseRepository.deleteExpense(expenseId)) {
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
     }
 }
