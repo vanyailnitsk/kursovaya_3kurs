@@ -1,9 +1,9 @@
 package com.example.java_lab4.servlets;
 
 import com.example.java_lab4.model.Expense;
-import com.example.java_lab4.model.User;
 import com.example.java_lab4.service.db.ExpenseRepository;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @WebServlet("/expense/*")
-public class ExpenseHistoryServlet extends HttpServlet {
+public class ExpenseServlet extends HttpServlet {
     private final ExpenseRepository expenseRepository;
 
-    public ExpenseHistoryServlet() {
+    public ExpenseServlet() {
         this.expenseRepository = new ExpenseRepository();
     }
 
@@ -38,7 +38,21 @@ public class ExpenseHistoryServlet extends HttpServlet {
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         System.out.println(requestBody);
         Expense expense =  new Gson().fromJson(requestBody, Expense.class);
-        System.out.println(expense.getSource());
         System.out.println(expense);
+        if (expenseRepository.addExpense(expense)) {
+            resp.getWriter().println("Success");
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            JsonObject error = new JsonObject();
+            error.addProperty("message","No user with id "+expense.getUserId());
+            resp.setContentType("application/json");
+            resp.getWriter().write(error.toString());
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int expenseId = (Integer) req.getAttribute("expense_id");
     }
 }

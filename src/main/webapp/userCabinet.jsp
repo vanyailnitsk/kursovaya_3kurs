@@ -53,8 +53,8 @@
 
                 <label for="category_id">Категория:</label>
                 <input type="number" id="category_id" name="category_id" required>
-
                 <button type="submit">Создать</button>
+                <div id="message"></div>
             </form>
         </div>
     </div>

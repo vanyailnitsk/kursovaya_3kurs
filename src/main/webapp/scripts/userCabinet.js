@@ -1,18 +1,19 @@
 function openCreateExpenseModal() {
     document.getElementById('createExpenseModal').style.display = 'block';
-    console.log("open")
 }
 
 function closeCreateExpenseModal() {
     document.getElementById('createExpenseModal').style.display = 'none';
+    document.getElementById('createExpenseForm').reset();
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     var modal = document.getElementById('createExpenseModal');
     if (event.target === modal) {
         modal.style.display = 'none';
     }
 };
+
 function submitExpenseForm(event) {
     event.preventDefault(); // Предотвратить отправку формы (браузерная перезагрузка)
 
@@ -34,14 +35,23 @@ function submitExpenseForm(event) {
         },
         body: JSON.stringify(formData)
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {
+                    throw new Error(error.error);
+                });
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('message').innerHTML = 'Запись успешно добавлена! '
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            console.log('Server Error:', error.message);
+            document.getElementById('message').innerHTML = 'Произошла ошибка! ' +error.message
+        });
 
-    closeCreateExpenseModal();
 }
+
 document.getElementById('createExpenseForm').addEventListener('submit', submitExpenseForm);
