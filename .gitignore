@@ -4,7 +4,12 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea
+.idea/*
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+>>>>>>> 6ed6674efec33a9a852e78ad81cb13bbc642339d
 *.iws
 *.iml
 *.ipr

@@ -11,19 +11,12 @@ import java.util.List;
 
 @WebServlet("/users")
 public class UsersServlet extends HttpServlet {
-    private String message;
     private final UserRepository userRepository = new UserRepository();
-
-    public void init() {
-        message = "Hello World!";
-    }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = userRepository.getAllUsers();
-        req.setAttribute("users",users);
-        req.getRequestDispatcher("/users.jsp").forward(req,resp);
+        req.setAttribute("users", users);
+        req.getRequestDispatcher("/users.jsp").forward(req, resp);
     }
 
-    public void destroy() {
-    }
 }

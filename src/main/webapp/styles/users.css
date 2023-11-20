@@ -1,11 +1,17 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Arial", sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 table {
-    width: 50%;
+    width: 80%;
     margin: 20px auto;
     border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 table, th, td {
@@ -13,10 +19,16 @@ table, th, td {
 }
 
 th, td {
-    padding: 10px;
+    padding: 15px;
     text-align: left;
 }
 
 th {
     background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+tr:hover {
+    background-color: #bbb;
 }
