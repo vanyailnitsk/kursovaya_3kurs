@@ -12,7 +12,6 @@
         <h1>Таблица расходов</h1>
         <table style="margin: auto">
             <tr>
-                <th>Id</th>
                 <th>Сумма</th>
                 <th>Описание</th>
                 <th>Категория</th>

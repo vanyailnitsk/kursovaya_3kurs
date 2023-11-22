@@ -1,29 +1,29 @@
-function openCreateExpenseModal() {
-    document.getElementById('createExpenseModal').style.display = 'block';
+function openCreateCategoryModal() {
+    document.getElementById('createCategoryModal').style.display = 'block';
 }
 
-function closeCreateExpenseModal() {
-    document.getElementById('createExpenseModal').style.display = 'none';
-    document.getElementById('createExpenseForm').reset();
+function closeCreateCategoryModal() {
+    document.getElementById('createCategoryModal').style.display = 'none';
+    document.getElementById('createCategoryForm').reset();
 }
 
 window.onclick = function (event) {
-    let createModal = document.getElementById('createExpenseModal');
-    let editModal = document.getElementById('editExpenseModal');
+    let createModal = document.getElementById('createCategoryModal');
+    let editModal = document.getElementById('editCategoryModal');
     if (event.target === createModal) {
         createModal.style.display = 'none';
-        document.getElementById('createExpenseForm').reset();
+        document.getElementById('createCategoryForm').reset();
     }
     else if (event.target === editModal) {
         editModal.style.display = 'none';
-        document.getElementById('editExpenseForm').reset();
+        document.getElementById('editCategoryForm').reset();
     }
 };
 
 
-function submitExpenseForm(event) {
+function submitCategoryForm(event) {
     event.preventDefault();
-    let form = document.getElementById('createExpenseForm');
+    let form = document.getElementById('createCategoryForm');
     let formData = {
         userId: document.getElementById('user_id').value,
         amount: document.getElementById('amount').value,
@@ -32,7 +32,7 @@ function submitExpenseForm(event) {
     };
     console.log(formData)
 
-    fetch('/expense', {
+    fetch('/category', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -60,10 +60,10 @@ function submitExpenseForm(event) {
 }
 
 
-function deleteExpense(expenseId) {
-    console.log(expenseId)
+function deleteCategory(categoryId) {
+    console.log(categoryId)
 
-    fetch(`/expense?id=${expenseId}`, {
+    fetch(`/category?id=${categoryId}`, {
         method: 'DELETE',
     })
         .then(response => response.text())
@@ -75,24 +75,23 @@ function deleteExpense(expenseId) {
         })
 }
 
-document.getElementById('createExpenseForm').addEventListener('submit', submitExpenseForm);
+document.getElementById('createCategoryForm').addEventListener('submit', submitCategoryForm);
 
-function openEditExpenseModal(expenseId,amount,source) {
-    document.getElementById("edit-expense-id").value = expenseId;
-    document.getElementById("edit-amount").value = amount;
-    document.getElementById("edit-source").value = source;
-    document.getElementById('editExpenseModal').style.display = 'block';
+function openEditCategoryModal(categoryId,name) {
+    document.getElementById("edit-category-id").value = categoryId;
+    document.getElementById("edit-name").value = name;
+    document.getElementById('editCategoryModal').style.display = 'block';
 }
 
-function closeEditExpenseModal() {
-    document.getElementById('editExpenseModal').style.display = 'none';
-    document.getElementById('editExpenseForm').reset();
+function closeEditCategoryModal() {
+    document.getElementById('editCategoryModal').style.display = 'none';
+    document.getElementById('editCategoryForm').reset();
 }
 
-function submitEditExpenseForm(event) {
+function submitEditCategoryForm(event) {
     event.preventDefault();
 
-    let form = document.getElementById('createExpenseForm');
+    let form = document.getElementById('editCategoryForm');
     let formData = {
         userId: document.getElementById('user_id').value,
         id:document.getElementById("edit-expense-id").value,
@@ -102,7 +101,7 @@ function submitEditExpenseForm(event) {
     };
     console.log(formData)
 
-    fetch('/expense', {
+    fetch('/category', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -127,5 +126,5 @@ function submitEditExpenseForm(event) {
             document.getElementById('edit-message').innerHTML = 'Произошла ошибка! ' +error.message
         });
 }
-document.getElementById('editExpenseForm').addEventListener('submit', submitEditExpenseForm);
+document.getElementById('editCategoryForm').addEventListener('submit', submitEditCategoryForm);
 
