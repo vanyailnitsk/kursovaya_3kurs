@@ -30,41 +30,37 @@ public class CategoryServlet extends HttpServlet {
         req.getRequestDispatcher("/categories.jsp").forward(req,resp);
     }
 
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-//        Expense expense =  new Gson().fromJson(requestBody, Expense.class);
-//        if (expenseRepository.addExpense(expense)) {
-//            resp.getWriter().println("Success");
-//        }
-//        else {
-//            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//            JsonObject error = new JsonObject();
-//            error.addProperty("message","No user with id "+expense.getUserId());
-//            resp.setContentType("application/json");
-//            resp.getWriter().write(error.toString());
-//        }
-//    }
-//
-//    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        int expenseId = Integer.parseInt(req.getParameter("id"));
-//        System.out.println(expenseId);
-//        if (!expenseRepository.deleteExpense(expenseId)) {
-//            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//        }
-//    }
-//
-//    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-//        Expense expense =  new Gson().fromJson(requestBody, Expense.class);
-//        if (categoryRepository.editCategory()) {
-//            resp.getWriter().println("Success");
-//        }
-//        else {
-//            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//            JsonObject error = new JsonObject();
-//            error.addProperty("message","No expense with id "+expense.getId());
-//            resp.setContentType("application/json");
-//            resp.getWriter().write(error.toString());
-//        }
-//    }
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        Category category = new Gson().fromJson(requestBody, Category.class);
+        if (categoryRepository.addCategory(category)) {
+            resp.getWriter().println("Success");
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Error while creating category");
+        }
+    }
+
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int categoryId = Integer.parseInt(req.getParameter("id"));
+        if (!categoryRepository.deleteCategory(categoryId)) {
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        Category category = new Gson().fromJson(requestBody, Category.class);
+        if (categoryRepository.editCategory(category)) {
+            resp.getWriter().println("Success");
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            JsonObject error = new JsonObject();
+            error.addProperty("message","No expense with id "+category.getId());
+            resp.setContentType("application/json");
+            resp.getWriter().write(error.toString());
+        }
+    }
 }
