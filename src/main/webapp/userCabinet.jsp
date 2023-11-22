@@ -13,6 +13,7 @@
         <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="/users">Пользователи</a></li>
+            <li><a href="/category">Категории покупок</a></li>
         </ul>
     </nav>
     <div class="container">
