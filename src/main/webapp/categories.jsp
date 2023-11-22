@@ -15,7 +15,7 @@
     </nav>
     <div class="container">
         <h1>Список категорий покупок</h1>
-        <button class="create-button" onclick="openCreateCategoryModal()">Добавить покупку</button>
+        <button class="create-button" onclick="openCreateCategoryModal()">Добавить категорию</button>
         <table>
             <thead>
             <tr>
@@ -57,7 +57,7 @@
     <div id="editCategoryModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeEditCategoryModal()">&times;</span>
-            <h2>Редактировать запись о покупке</h2>
+            <h2>Редактировать категорию</h2>
             <form id="editCategoryForm">
                 <input type="hidden" id="edit-category-id" name="user_id" required>
                 <label for="edit-name">Название</label>
