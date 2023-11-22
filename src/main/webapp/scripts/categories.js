@@ -25,10 +25,7 @@ function submitCategoryForm(event) {
     event.preventDefault();
     let form = document.getElementById('createCategoryForm');
     let formData = {
-        userId: document.getElementById('user_id').value,
-        amount: document.getElementById('amount').value,
-        source: document.getElementById('source').value,
-        categoryId: document.getElementById('category_id').value
+        name: document.getElementById('name').value
     };
     console.log(formData)
 
@@ -93,11 +90,8 @@ function submitEditCategoryForm(event) {
 
     let form = document.getElementById('editCategoryForm');
     let formData = {
-        userId: document.getElementById('user_id').value,
-        id:document.getElementById("edit-expense-id").value,
-        amount: document.getElementById('edit-amount').value,
-        source: document.getElementById('edit-source').value,
-        categoryId: document.getElementById('edit-category-id').value
+        id:document.getElementById("edit-category-id").value,
+        name: document.getElementById('edit-name').value,
     };
     console.log(formData)
 
