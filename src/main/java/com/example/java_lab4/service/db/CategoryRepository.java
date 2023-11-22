@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CategoryRepository {
     private final DataBaseService dataBaseService;
-    static final String SELECT_ALL = "SELECT * FROM expense_category";
+    static final String SELECT_ALL = "SELECT * FROM expense_category ORDER BY id";
     static final String INSERT = "INSERT INTO expense_category (name) values (?)";
     static final String DELETE = "DELETE FROM expense_category where id=?";
     static final String UPDATE = "UPDATE expense_category SET name=? where id=?";
