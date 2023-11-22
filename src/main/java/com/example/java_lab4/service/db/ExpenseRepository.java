@@ -15,6 +15,7 @@ public class ExpenseRepository {
             " on expense_category.id=expense.category where expense.user_id=? ORDER BY timestamp desc";
     static final String INSERT = "INSERT INTO expense (user_id,amount,source,category,timestamp) values (?,?,?,?,NOW())";
     static final String DELETE = "DELETE FROM expense where id=?";
+    static final String UPDATE = "UPDATE expense SET amount=?,source=?,category=? where id=?";
 
     public ExpenseRepository() {
         this.dataBaseService = new DataBaseService();
@@ -51,6 +52,20 @@ public class ExpenseRepository {
             statement.setInt(2, expense.getAmount());
             statement.setString(3, expense.getSource());
             statement.setInt(4, expense.getCategoryId());
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    public boolean editExpense(Expense expense) {
+        Connection conn = dataBaseService.getConnect();
+        try {
+            PreparedStatement statement = conn.prepareStatement(UPDATE);
+            statement.setInt(1, expense.getAmount());
+            statement.setString(2, expense.getSource());
+            statement.setInt(3, expense.getCategoryId());
+            statement.setInt(4,expense.getId());
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

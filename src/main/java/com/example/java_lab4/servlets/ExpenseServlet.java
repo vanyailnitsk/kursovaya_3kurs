@@ -56,4 +56,20 @@ public class ExpenseServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        Expense expense =  new Gson().fromJson(requestBody, Expense.class);
+        if (expenseRepository.editExpense(expense)) {
+            resp.getWriter().println("Success");
+        }
+        else {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            JsonObject error = new JsonObject();
+            error.addProperty("message","No expense with id "+expense.getId());
+            resp.setContentType("application/json");
+            resp.getWriter().write(error.toString());
+        }
+    }
 }
