@@ -11,11 +11,14 @@
         <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="/users">Пользователи</a></li>
+            <li><a href="/category">Категории покупок</a></li>
         </ul>
     </nav>
-    <h1><%= "Hello World!" %>
-    </h1>
-    <br/>
-    <a href="users">Hello Servlet</a>
+    <div style="margin: 20px">
+        <h1><%= "Добро пожаловать в приложение!" %>
+        </h1>
+        <br/>
+        <a href="users" >Перейти к списку пользователей</a>
+    </div>
 </body>
 </html>

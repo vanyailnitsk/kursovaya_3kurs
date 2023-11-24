@@ -51,7 +51,6 @@ public class ExpenseServlet extends HttpServlet {
 
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int expenseId = Integer.parseInt(req.getParameter("id"));
-        System.out.println(expenseId);
         if (!expenseRepository.deleteExpense(expenseId)) {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
