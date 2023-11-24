@@ -33,34 +33,4 @@ public class DataBaseService {
             return null;
         }
     }
-
-    public boolean insert(String sql){
-        boolean isSuccessful = false;
-        Statement statement = null;
-        try {
-            statement = getConnect().createStatement();
-            int rowsAffected = statement.executeUpdate(sql);
-            if (rowsAffected > 0) {
-                isSuccessful = true;
-            }
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
-        }
-        return isSuccessful;
-    }
-
-    public boolean delete (String sql){
-        boolean isSuccessful = false;
-        Statement statement = null;
-        try {
-            statement = getConnect().createStatement();
-            int rowsAffected = statement.executeUpdate(sql);
-            if (rowsAffected > 0) {
-                isSuccessful = true;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return isSuccessful;
-    }
 }
