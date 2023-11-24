@@ -23,10 +23,12 @@ public class UserServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getPathInfo();
         if (path == null || path.isEmpty()) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            List<User> users = userRepository.getAllUsers();
+            req.setAttribute("users", users);
+            req.getRequestDispatcher("/users.jsp").forward(req, resp);
             return;
         }
-        String userId = req.getPathInfo().split("/")[1];
+        String userId = path.split("/")[1];
         User user = userRepository.getUserById(Integer.parseInt(userId));
         List<Expense> expenses = expenseRepository.getExpensesByUserId(Integer.valueOf(userId));
         req.setAttribute("categories",categoryRepository.getAllCategories());
