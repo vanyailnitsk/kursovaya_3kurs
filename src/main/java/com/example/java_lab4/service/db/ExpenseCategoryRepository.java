@@ -1,8 +1,6 @@
 package com.example.java_lab4.service.db;
 
 import com.example.java_lab4.model.Category;
-import com.example.java_lab4.model.Expense;
-import com.example.java_lab4.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,13 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryRepository {
+public class ExpenseCategoryRepository {
     private final DataBaseService dataBaseService;
     static final String SELECT_ALL = "SELECT * FROM expense_category ORDER BY id";
     static final String INSERT = "INSERT INTO expense_category (name) values (?)";
     static final String DELETE = "DELETE FROM expense_category where id=?";
     static final String UPDATE = "UPDATE expense_category SET name=? where id=?";
-    public CategoryRepository() {
+    public ExpenseCategoryRepository() {
         this.dataBaseService = new DataBaseService();
     }
     public List<Category> getAllCategories() {
