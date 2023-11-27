@@ -1,7 +1,6 @@
 package com.example.java_lab4.servlets;
 
 import com.example.java_lab4.model.Category;
-import com.example.java_lab4.model.Expense;
 import com.example.java_lab4.service.db.CategoryRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
