@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/expense/*")
+@WebServlet("/expense")
 public class ExpenseServlet extends HttpServlet {
     private final ExpenseRepository expenseRepository;
     private final ExpenseCategoryRepository expenseCategoryRepository;
@@ -26,13 +26,8 @@ public class ExpenseServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = req.getPathInfo();
-        if (path == null || path.isEmpty()) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-        String userId = req.getPathInfo().split("/")[1];
-        List<Expense> expenses = expenseRepository.getExpensesByUserId(Integer.parseInt(userId));
+        Integer userId = (Integer) req.getSession().getAttribute("user_id");
+        List<Expense> expenses = expenseRepository.getExpensesByUserId(userId);
         req.setAttribute("expenses",expenses);
         req.setAttribute("expense_categories",expenseCategoryRepository.getAllCategories());
         req.getRequestDispatcher("/expense-history.jsp").forward(req,resp);

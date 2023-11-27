@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/income/*")
+@WebServlet("/income")
 public class IncomeServlet extends HttpServlet {
     private final IncomeRepository incomeRepository;
     private final IncomeCategoryRepository incomeCategoryRepository;
@@ -28,13 +28,8 @@ public class IncomeServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = req.getPathInfo();
-        if (path == null || path.isEmpty()) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-        String userId = req.getPathInfo().split("/")[1];
-        List<Income> incomes = incomeRepository.getIncomesByUserId(Integer.parseInt(userId));
+        Integer userId = (Integer) req.getSession().getAttribute("user_id");
+        List<Income> incomes = incomeRepository.getIncomesByUserId(userId);
         req.setAttribute("incomes",incomes);
         req.setAttribute("userId",userId);
         req.setAttribute("income_categories",incomeCategoryRepository.getAllCategories());

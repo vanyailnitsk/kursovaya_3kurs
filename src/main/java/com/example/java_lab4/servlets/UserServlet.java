@@ -15,21 +15,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/users/*")
+@WebServlet("/dashboard")
 public class UserServlet extends HttpServlet {
     private final UserRepository userRepository = new UserRepository();
     private final ExpenseCategoryRepository expenseCategoryRepository = new ExpenseCategoryRepository();
     private final ExpenseRepository expenseRepository = new ExpenseRepository();
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = req.getPathInfo();
-        if (path == null || path.isEmpty()) {
-            List<User> users = userRepository.getAllUsers();
-            req.setAttribute("users", users);
-            req.getRequestDispatcher("/users.jsp").forward(req, resp);
-            return;
-        }
-        int userId = Integer.parseInt(path.split("/")[1]);
+        Integer userId = (Integer) req.getSession().getAttribute("user_id");
         User user = userRepository.getUserById(userId);
         List<Expense> expenses = expenseRepository.getExpensesByUserId(userId);
         req.setAttribute("expense_categories", expenseRepository.getUserExpensesByCategories(userId));
