@@ -1,5 +1,6 @@
 package com.example.java_lab4.service.db;
 
+import com.example.java_lab4.model.Category;
 import com.example.java_lab4.model.Expense;
 
 import java.sql.Connection;
@@ -7,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ExpenseRepository {
     private final DataBaseService dataBaseService;
@@ -16,6 +19,12 @@ public class ExpenseRepository {
     static final String INSERT = "INSERT INTO expense (user_id,amount,source,category,timestamp) values (?,?,?,?,NOW())";
     static final String DELETE = "DELETE FROM expense where id=?";
     static final String UPDATE = "UPDATE expense SET amount=?,source=?,category=? where id=?";
+    static final String SELECT_SUM_EXPENSES_OF_USER_GROUP_BY_CATEGORY =
+            "SELECT expense_category.id, expense_category.name, COALESCE(SUM(amount), 0) AS sum" +
+                    " FROM expense_category" +
+                    " LEFT JOIN expense ON expense.category = expense_category.id AND expense.user_id=?" +
+                    " GROUP BY expense_category.id, expense_category.name" +
+                    " ORDER BY expense_category.id";
 
     public ExpenseRepository() {
         this.dataBaseService = new DataBaseService();
@@ -43,6 +52,28 @@ public class ExpenseRepository {
            e.printStackTrace();
         }
         return expenses;
+    }
+    public Map<Category,Integer> getUserExpensesByCategories(Integer userId) {
+        List<Expense> expenses = new ArrayList<>();
+        Connection conn = dataBaseService.getConnect();
+        Map<Category,Integer> map = new HashMap<>();
+        try {
+            PreparedStatement statement = conn.prepareStatement(SELECT_SUM_EXPENSES_OF_USER_GROUP_BY_CATEGORY);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Category category = new Category(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name")
+                );
+                Integer sumExpenses = resultSet.getInt("sum");
+                map.put(category,sumExpenses);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(map);
+        return map;
     }
     public boolean addExpense(Expense expense) {
         Connection conn = dataBaseService.getConnect();

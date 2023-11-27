@@ -14,11 +14,11 @@
     <div class="content">
         <h1>Добрый день, ${user.name}!</h1>
         <div class="categories-container">
-            <c:forEach items="${categories}" var="category">
+            <c:forEach items="${expense_categories}" var="category_map">
                 <div class="category-card">
-                    <img class="category-image" src="/img/category.png" alt="${category.name}">
-                    <div class="category-title">${category.name}</div>
-                    <div class="category-amount">1000 ₽</div>
+                    <img class="category-image" src="/img/category.png" alt="${category_map.key.name}">
+                    <div class="category-title">${category_map.key.name}</div>
+                    <div class="category-amount">${category_map.value} ₽</div>
                 </div>
             </c:forEach>
         </div>
@@ -69,8 +69,8 @@
                 <label for="category_id">Категория:</label>
                 <select id=category_id name="category_id">
                     <option value="0">Выберите категорию</option>
-                    <c:forEach items="${categories}" var="category">
-                        <option value="${category.id}">${category.name}</option>
+                    <c:forEach items="${expense_categories}" var="category">
+                        <option value="${category.key.id}">${category.key.name}</option>
                     </c:forEach>
                 </select>
                 <button type="submit">Создать</button>
@@ -94,8 +94,8 @@
                 <label for="category_id">Категория:</label>
                 <select id="edit-category-id" name="category_id">
                     <option value="0">Выберите категорию</option>
-                    <c:forEach items="${categories}" var="category">
-                        <option value="${category.id}">${category.name}</option>
+                    <c:forEach items="${expense_categories}" var="category">
+                        <option value="${category.key.id}">${category.key.name}</option>
                     </c:forEach>
                 </select>
                 <button type="submit">Сохранить</button>

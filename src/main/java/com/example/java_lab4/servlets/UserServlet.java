@@ -28,10 +28,10 @@ public class UserServlet extends HttpServlet {
             req.getRequestDispatcher("/users.jsp").forward(req, resp);
             return;
         }
-        String userId = path.split("/")[1];
-        User user = userRepository.getUserById(Integer.parseInt(userId));
-        List<Expense> expenses = expenseRepository.getExpensesByUserId(Integer.valueOf(userId));
-        req.setAttribute("categories", expenseCategoryRepository.getAllCategories());
+        int userId = Integer.parseInt(path.split("/")[1]);
+        User user = userRepository.getUserById(userId);
+        List<Expense> expenses = expenseRepository.getExpensesByUserId(userId);
+        req.setAttribute("expense_categories", expenseRepository.getUserExpensesByCategories(userId));
         req.setAttribute("user", user);
         req.setAttribute("expenses",expenses);
         req.getRequestDispatcher("/userCabinet.jsp").forward(req, resp);

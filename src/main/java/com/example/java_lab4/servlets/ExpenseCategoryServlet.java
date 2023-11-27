@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/category")
+@WebServlet("/expense-category")
 public class ExpenseCategoryServlet extends HttpServlet {
     private final ExpenseCategoryRepository expenseCategoryRepository;
 
