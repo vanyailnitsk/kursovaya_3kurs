@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         int userId = loginService.auth(username, password);
         if (userId != -1) {
             req.getSession().setAttribute("user_id", userId);
-            resp.sendRedirect( "/");
+            resp.sendRedirect( "/dashboard");
         } else {
             req.setAttribute("errorText", "error login or pass");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
