@@ -1,5 +1,7 @@
 package com.example.java_lab4.model;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class User {
     private int id;
     private String name;

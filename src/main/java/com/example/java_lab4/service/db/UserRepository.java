@@ -2,6 +2,8 @@ package com.example.java_lab4.service.db;
 
 import com.example.java_lab4.model.User;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ public class UserRepository {
     private final DataBaseService dataBaseService;
     static final String SELECT_ALL = "SELECT * from users;";
     static final String SELECT_BY_ID = "SELECT * from users where id=";
+    private final String SELECT_AUTH = "SELECT id FROM users WHERE login = ? AND password = ?";
 
     public UserRepository() {
         this.dataBaseService = new DataBaseService();
@@ -32,6 +35,23 @@ public class UserRepository {
             System.out.println(e.getMessage());
         }
         return users;
+    }
+
+    public int getUserIdByUsernameAndPassword(String username,String password) {
+        Connection conn = dataBaseService.getConnect();
+        int userId=-1;
+        try {
+            PreparedStatement statement = conn.prepareStatement(SELECT_AUTH);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                userId = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return userId;
     }
 
     public User getUserById(int id) {
