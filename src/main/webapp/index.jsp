@@ -2,23 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>BonchMoney</title>
     <link rel="stylesheet" href="/styles/navbar.css">
     <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/users">Пользователи</a></li>
-            <li><a href="/category">Категории покупок</a></li>
-        </ul>
-    </nav>
-    <div style="margin: 20px">
+    <jsp:include page="main.html" />
+    <div class="content">
         <h1><%= "Добро пожаловать в приложение!" %>
         </h1>
         <br/>
-        <a href="users" >Перейти к списку пользователей</a>
+        <a href="/users" >Перейти к списку пользователей</a>
     </div>
 </body>
 </html>

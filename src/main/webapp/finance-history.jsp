@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="/styles/finance-history.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <div style="text-align: center">
+    <jsp:include page="main.html" />
+    <div class="content">
         <h1>Таблица расходов</h1>
         <table style="margin: auto">
             <tr>

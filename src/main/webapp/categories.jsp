@@ -5,16 +5,11 @@
     <title>Категории</title>
     <link rel="stylesheet" href="/styles/userCabinet.css">
     <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/users">Пользователи</a></li>
-            <li><a href="/category">Категории покупок</a></li>
-        </ul>
-    </nav>
-    <div class="container">
+    <jsp:include page="main.html" />
+    <div class="content">
         <h1>Список категорий покупок</h1>
         <button class="create-button" onclick="openCreateCategoryModal()">Добавить категорию</button>
         <table>

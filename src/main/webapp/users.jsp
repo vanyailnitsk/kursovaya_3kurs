@@ -7,16 +7,11 @@
     <link rel="stylesheet" href="/styles/navbar.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/users">Пользователи</a></li>
-            <li><a href="/category">Категории покупок</a></li>
-        </ul>
-    </nav>
-    <div style="text-align: center">
+    <jsp:include page="main.html" />
+    <div class="content">
         <h1>Список пользователей</h1>
         <table style="margin: auto">
             <tr>
