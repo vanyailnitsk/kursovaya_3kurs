@@ -1,4 +1,7 @@
-function openCreateExpenseModal() {
+function openCreateExpenseModal(categoryName,categoryId) {
+    console.log(categoryName)
+    document.getElementById('modalTitle').innerText = "Новая покупка в категории " + categoryName;
+    document.getElementById("category_id").value = categoryId;
     document.getElementById('createExpenseModal').style.display = 'block';
 }
 

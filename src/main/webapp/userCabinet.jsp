@@ -15,49 +15,31 @@
         <h1>Добрый день, ${user.name}!</h1>
         <div class="categories-container">
             <c:forEach items="${expense_categories}" var="category_map">
-                <div class="category-card">
+                <div class="category-card"
+                     onclick={openCreateExpenseModal('${category_map.key.name}',${category_map.key.id})}>
                     <img class="category-image" src="/img/category.png" alt="${category_map.key.name}">
                     <div class="category-title">${category_map.key.name}</div>
                     <div class="category-amount">${category_map.value} ₽</div>
                 </div>
             </c:forEach>
         </div>
-        <button class="create-button" onclick="openCreateExpenseModal()">Добавить покупку</button>
-        <table>
-            <caption>Ваши последние покупки</caption>
-            <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Сумма</th>
-                <th>Описание</th>
-                <th>Категория</th>
-                <th>Действие</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="card-container">
+            <h2>Ваши последние покупки</h2>
             <c:forEach items="${expenses}" var="expense">
-                <tr>
-                    <td>${expense.dateFormatted}</td>
-                    <td>${expense.amount} ₽</td>
-                    <td>${expense.source}</td>
-                    <td>${expense.category}</td>
-                    <td>
-                        <button class="edit-button"
-                                onclick="openEditExpenseModal(${expense.id},${expense.amount},'${expense.source}')"
-                        >Изменить
-                        </button>
-                        <button class="delete-button" type="submit" onclick="deleteExpense(${expense.id})">Удалить
-                        </button>
-                    </td>
-                </tr>
+                <div class="card">
+                    <h3>${expense.source}</h3>
+                    <p><span>${expense.amount} ₽</span></p>
+                    <p>Категория: <span>${expense.category}</span></p>
+                    <p><span>${expense.dateFormatted}</span></p>
+                </div>
             </c:forEach>
-            </tbody>
-        </table>
+        </div>
+
     </div>
     <div id="createExpenseModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeCreateExpenseModal()">&times;</span>
-            <h2>Добавить запись о покупке</h2>
+            <h2 id="modalTitle">Новая покупка в категории </h2>
             <form id="createExpenseForm">
                 <input type="hidden" id="user_id" name="user_id" required value="${user.id}">
                 <label for="amount">Сумма:</label>
@@ -66,13 +48,7 @@
                 <label for="source">Покупка:</label>
                 <input type="text" id="source" name="source" maxlength="50" required>
 
-                <label for="category_id">Категория:</label>
-                <select id=category_id name="category_id">
-                    <option value="0">Выберите категорию</option>
-                    <c:forEach items="${expense_categories}" var="category">
-                        <option value="${category.key.id}">${category.key.name}</option>
-                    </c:forEach>
-                </select>
+                <input id="category_id" type="text" name="category_id" hidden>
                 <button type="submit">Создать</button>
                 <div id="message"></div>
             </form>

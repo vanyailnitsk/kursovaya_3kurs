@@ -1,4 +1,4 @@
-function openCreateExpenseModal() {
+function openCreateExpenseModal(categoryName,categoryId) {
     document.getElementById('createExpenseModal').style.display = 'block';
 }
 

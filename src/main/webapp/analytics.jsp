@@ -30,7 +30,6 @@
     <%
         Map<Category,Integer> expenseMap = (Map<Category, Integer>) request.getAttribute("expense_categories");
         Map<Category,Integer> incomeMap = (Map<Category, Integer>) request.getAttribute("income_categories");
-        System.out.println(incomeMap);
     %>
     <jsp:include page="main.html"/>
     <div class="content chart-row">
