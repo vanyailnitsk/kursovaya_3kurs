@@ -12,7 +12,7 @@
 <body>
     <jsp:include page="main.html"/>
     <div class="content">
-        <button class="create-button" onclick="openCreateIncomeModal()">Добавить покупку</button>
+        <button class="create-button" onclick="openCreateIncomeModal()">Добавить запись о доходе</button>
         <div class="recent-purchases">
             <h2>Последняя информация о доходах</h2>
             <table>
@@ -49,7 +49,7 @@
     <div id="createIncomeModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeCreateIncomeModal()">&times;</span>
-            <h2>Добавить запись о покупке</h2>
+            <h2>Добавить запись о доходе</h2>
             <form id="createIncomeForm">
                 <input type="hidden" id="user_id" name="user_id" required value="${userId}">
                 <label for="amount">Сумма:</label>
@@ -73,7 +73,7 @@
     <div id="editIncomeModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeEditIncomeModal()">&times;</span>
-            <h2>Редактировать запись о покупке</h2>
+            <h2>Редактировать запись о доходе</h2>
             <form id="editIncomeForm">
                 <input type="hidden" id="edit-income-id" name="user_id" required>
                 <label for="amount">Сумма:</label>
