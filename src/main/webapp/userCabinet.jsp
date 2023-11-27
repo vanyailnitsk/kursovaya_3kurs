@@ -10,9 +10,18 @@
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <jsp:include page="main.html" />
+    <jsp:include page="main.html"/>
     <div class="content">
         <h1>Добрый день, ${user.name}!</h1>
+        <div class="categories-container">
+            <c:forEach items="${categories}" var="category">
+                <div class="category-card">
+                    <img class="category-image" src="/img/category.png" alt="${category.name}">
+                    <div class="category-title">${category.name}</div>
+                    <div class="category-amount">1000 ₽</div>
+                </div>
+            </c:forEach>
+        </div>
         <button class="create-button" onclick="openCreateExpenseModal()">Добавить покупку</button>
         <table>
             <caption>Ваши последние покупки</caption>

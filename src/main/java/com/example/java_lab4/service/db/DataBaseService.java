@@ -10,9 +10,9 @@ public class DataBaseService {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        final String url = "jdbc:postgresql://217.107.219.154:49307/bonch_2105188?characterEncoding=UTF-8";
-        final String user = "bonch_2105188";
-        final String password = "AcemoheRIIs=";
+        final String url = "jdbc:postgresql://localhost:5432/java_lr4?characterEncoding=UTF-8";
+        final String user = "postgres";
+        final String password = "admin";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
