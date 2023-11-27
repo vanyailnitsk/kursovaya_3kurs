@@ -1,8 +1,9 @@
 package com.example.java_lab4.servlets;
 
 import com.example.java_lab4.model.Expense;
-import com.example.java_lab4.service.db.ExpenseCategoryRepository;
-import com.example.java_lab4.service.db.ExpenseRepository;
+import com.example.java_lab4.model.Income;
+import com.example.java_lab4.service.db.IncomeCategoryRepository;
+import com.example.java_lab4.service.db.IncomeRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -15,14 +16,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/expense/*")
-public class ExpenseServlet extends HttpServlet {
-    private final ExpenseRepository expenseRepository;
-    private final ExpenseCategoryRepository expenseCategoryRepository;
+@WebServlet("/income/*")
+public class IncomeServlet extends HttpServlet {
+    private final IncomeRepository incomeRepository;
+    private final IncomeCategoryRepository incomeCategoryRepository;
 
-    public ExpenseServlet() {
-        this.expenseRepository = new ExpenseRepository();
-        this.expenseCategoryRepository = new ExpenseCategoryRepository();
+    public IncomeServlet() {
+        this.incomeRepository = new IncomeRepository();
+        this.incomeCategoryRepository = new IncomeCategoryRepository();
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,45 +33,45 @@ public class ExpenseServlet extends HttpServlet {
             return;
         }
         String userId = req.getPathInfo().split("/")[1];
-        List<Expense> expenses = expenseRepository.getExpensesByUserId(Integer.parseInt(userId));
-        req.setAttribute("expenses",expenses);
-        req.setAttribute("expense_categories",expenseCategoryRepository.getAllCategories());
-        req.getRequestDispatcher("/expense-history.jsp").forward(req,resp);
+        List<Income> incomes = incomeRepository.getIncomesByUserId(Integer.parseInt(userId));
+        req.setAttribute("incomes",incomes);
+        req.setAttribute("userId",userId);
+        req.setAttribute("income_categories",incomeCategoryRepository.getAllCategories());
+        req.getRequestDispatcher("/income-history.jsp").forward(req,resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        Expense expense =  new Gson().fromJson(requestBody, Expense.class);
-        if (expenseRepository.addExpense(expense)) {
+        Income income =  new Gson().fromJson(requestBody, Income.class);
+        if (incomeRepository.addIncome(income)) {
             resp.getWriter().println("Success");
         }
         else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             JsonObject error = new JsonObject();
-            error.addProperty("message","No user with id "+expense.getUserId());
+            error.addProperty("message","No user with id "+income.getUserId());
             resp.setContentType("application/json");
             resp.getWriter().write(error.toString());
         }
     }
 
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int expenseId = Integer.parseInt(req.getParameter("id"));
-        if (!expenseRepository.deleteExpense(expenseId)) {
+        int incomeId = Integer.parseInt(req.getParameter("id"));
+        if (!incomeRepository.deleteIncome(incomeId)) {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 
-    @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        Expense expense =  new Gson().fromJson(requestBody, Expense.class);
-        if (expenseRepository.editExpense(expense)) {
+        Income income =  new Gson().fromJson(requestBody, Income.class);
+        if (incomeRepository.editIncome(income)) {
             resp.getWriter().println("Success");
         }
         else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             JsonObject error = new JsonObject();
-            error.addProperty("message","No expense with id "+expense.getId());
+            error.addProperty("message","No income with id "+income.getId());
             resp.setContentType("application/json");
             resp.getWriter().write(error.toString());
         }

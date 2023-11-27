@@ -2,57 +2,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Личный кабинет</title>
+    <title>История расходов</title>
+    <link rel="stylesheet" href="/styles/finance-history.css">
     <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="/styles/userCabinet.css">
-    <link rel="stylesheet" href="/styles/navbar.css">
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/userCabinet.css">
 </head>
 <body>
     <jsp:include page="main.html"/>
     <div class="content">
-        <h1>Добрый день, ${user.name}!</h1>
-        <div class="categories-container">
-            <c:forEach items="${expense_categories}" var="category_map">
-                <div class="category-card">
-                    <img class="category-image" src="/img/category.png" alt="${category_map.key.name}">
-                    <div class="category-title">${category_map.key.name}</div>
-                    <div class="category-amount">${category_map.value} ₽</div>
-                </div>
-            </c:forEach>
-        </div>
-        <button class="create-button" onclick="openCreateExpenseModal()">Добавить покупку</button>
-        <table>
-            <caption>Ваши последние покупки</caption>
-            <thead>
-            <tr>
-                <th>Дата</th>
-                <th>Сумма</th>
-                <th>Описание</th>
-                <th>Категория</th>
-                <th>Действие</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${expenses}" var="expense">
+        <div class="recent-purchases">
+            <h2>Последние покупки</h2>
+            <table>
+                <thead>
                 <tr>
-                    <td>${expense.dateFormatted}</td>
-                    <td>${expense.amount} ₽</td>
-                    <td>${expense.source}</td>
-                    <td>${expense.category}</td>
-                    <td>
-                        <button class="edit-button"
-                                onclick="openEditExpenseModal(${expense.id},${expense.amount},'${expense.source}')"
-                        >Изменить
-                        </button>
-                        <button class="delete-button" type="submit" onclick="deleteExpense(${expense.id})">Удалить
-                        </button>
-                    </td>
+                    <th>Дата</th>
+                    <th>Сумма</th>
+                    <th>Описание</th>
+                    <th>Категория</th>
+                    <th>Действие</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${expenses}" var="expense">
+                    <tr>
+                        <td>${expense.dateFormatted}</td>
+                        <td>${expense.amount}</td>
+                        <td>${expense.source}</td>
+                        <td>${expense.category}</td>
+                        <td>
+                            <button class="edit-button"
+                                    onclick="openEditExpenseModal(${expense.id},${expense.amount},'${expense.source}')"
+                            >Изменить
+                            </button>
+                            <button class="delete-button" type="submit" onclick="deleteExpense(${expense.id})">Удалить
+                            </button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div id="createExpenseModal" class="modal">
         <div class="modal-content">
@@ -70,7 +61,7 @@
                 <select id=category_id name="category_id">
                     <option value="0">Выберите категорию</option>
                     <c:forEach items="${expense_categories}" var="category">
-                        <option value="${category.key.id}">${category.key.name}</option>
+                        <option value="${category.id}">${category.name}</option>
                     </c:forEach>
                 </select>
                 <button type="submit">Создать</button>
@@ -83,7 +74,6 @@
             <span class="close" onclick="closeEditExpenseModal()">&times;</span>
             <h2>Редактировать запись о покупке</h2>
             <form id="editExpenseForm">
-                <input type="hidden" id="edit-user-id" name="user_id" required value="${user.id}">
                 <input type="hidden" id="edit-expense-id" name="user_id" required>
                 <label for="amount">Сумма:</label>
                 <input type="number" id="edit-amount" name="amount" required value="">
@@ -95,7 +85,7 @@
                 <select id="edit-category-id" name="category_id">
                     <option value="0">Выберите категорию</option>
                     <c:forEach items="${expense_categories}" var="category">
-                        <option value="${category.key.id}">${category.key.name}</option>
+                        <option value="${category.id}">${category.name}</option>
                     </c:forEach>
                 </select>
                 <button type="submit">Сохранить</button>
@@ -103,6 +93,6 @@
             </form>
         </div>
     </div>
-    <script src="/scripts/userCabinet.js"></script>
+    <script src="/scripts/expense.js"></script>
 </body>
 </html>

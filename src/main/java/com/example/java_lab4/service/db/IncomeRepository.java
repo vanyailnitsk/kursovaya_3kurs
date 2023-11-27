@@ -2,6 +2,7 @@ package com.example.java_lab4.service.db;
 
 import com.example.java_lab4.model.Category;
 import com.example.java_lab4.model.Expense;
+import com.example.java_lab4.model.Income;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,32 +10,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class ExpenseRepository {
+public class IncomeRepository {
     private final DataBaseService dataBaseService;
-    static final String SELECT_BY_USERID = "SELECT * from expense JOIN expense_category" +
-            " on expense_category.id=expense.category where expense.user_id=? ORDER BY timestamp desc";
-    static final String INSERT = "INSERT INTO expense (user_id,amount,source,category,timestamp) values (?,?,?,?,NOW())";
-    static final String DELETE = "DELETE FROM expense where id=?";
-    static final String UPDATE = "UPDATE expense SET amount=?,source=?,category=? where id=?";
+    static final String SELECT_BY_USERID = "SELECT * from income JOIN income_category" +
+            " on income_category.id=income.category where income.user_id=? ORDER BY timestamp desc";
+    static final String INSERT = "INSERT INTO income (user_id,amount,source,category,timestamp) values (?,?,?,?,NOW())";
+    static final String DELETE = "DELETE FROM income where id=?";
+    static final String UPDATE = "UPDATE income SET amount=?,source=?,category=? where id=?";
     static final String SELECT_SUM_EXPENSES_OF_USER_GROUP_BY_CATEGORY =
-            "SELECT expense_category.id, expense_category.name, COALESCE(SUM(amount), 0) AS sum" +
-                    " FROM expense_category" +
-                    " LEFT JOIN expense ON expense.category = expense_category.id AND expense.user_id=?" +
-                    " GROUP BY expense_category.id, expense_category.name" +
-                    " ORDER BY expense_category.id";
+            "SELECT income_category.id, income_category.name, COALESCE(SUM(amount), 0) AS sum" +
+                    " FROM income_category" +
+                    " LEFT JOIN income ON income.category = income_category.id AND income.user_id=?" +
+                    " GROUP BY income_category.id, income_category.name" +
+                    " ORDER BY income_category.id";
 
-    public ExpenseRepository() {
+    public IncomeRepository() {
         this.dataBaseService = new DataBaseService();
     }
-    public List<Expense> getExpensesByUserId(Integer userId) {
-        List<Expense> expenses = new ArrayList<>();
+    public List<Income> getIncomesByUserId(Integer userId) {
+        List<Income> incomes = new ArrayList<>();
         Connection conn = dataBaseService.getConnect();
         try {
             PreparedStatement statement = conn.prepareStatement(SELECT_BY_USERID);
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Expense expense = new Expense(
+                Income income = new Income(
                         resultSet.getInt("id"),
                         resultSet.getInt("user_id"),
                         resultSet.getInt("amount"),
@@ -42,16 +43,16 @@ public class ExpenseRepository {
                         resultSet.getInt("category"),
                         resultSet.getTimestamp("timestamp")
                 );
-                expense.setCategory(resultSet.getString("name"));
-                expenses.add(expense);
+                income.setCategory(resultSet.getString("name"));
+                incomes.add(income);
             }
         } catch (SQLException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
-        return expenses;
+        return incomes;
     }
-    public Map<Category,Integer> getUserExpensesByCategories(Integer userId) {
-        List<Expense> expenses = new ArrayList<>();
+    public Map<Category,Integer> getUserIncomesByCategories(Integer userId) {
+        List<Income> incomes = new ArrayList<>();
         Connection conn = dataBaseService.getConnect();
         Map<Category,Integer> map = new LinkedHashMap<>();
         try {
@@ -63,43 +64,43 @@ public class ExpenseRepository {
                         resultSet.getInt("id"),
                         resultSet.getString("name")
                 );
-                Integer sumExpenses = resultSet.getInt("sum");
-                map.put(category,sumExpenses);
+                Integer sumIncomes = resultSet.getInt("sum");
+                map.put(category,sumIncomes);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return map;
     }
-    public boolean addExpense(Expense expense) {
+    public boolean addIncome(Income income) {
         Connection conn = dataBaseService.getConnect();
         try {
             PreparedStatement statement = conn.prepareStatement(INSERT);
-            statement.setInt(1, expense.getUserId());
-            statement.setInt(2, expense.getAmount());
-            statement.setString(3, expense.getSource());
-            statement.setInt(4, expense.getCategoryId());
+            statement.setInt(1, income.getUserId());
+            statement.setInt(2, income.getAmount());
+            statement.setString(3, income.getSource());
+            statement.setInt(4, income.getCategoryId());
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return false;
     }
-    public boolean editExpense(Expense expense) {
+    public boolean editIncome(Income income) {
         Connection conn = dataBaseService.getConnect();
         try {
             PreparedStatement statement = conn.prepareStatement(UPDATE);
-            statement.setInt(1, expense.getAmount());
-            statement.setString(2, expense.getSource());
-            statement.setInt(3, expense.getCategoryId());
-            statement.setInt(4,expense.getId());
+            statement.setInt(1, income.getAmount());
+            statement.setString(2, income.getSource());
+            statement.setInt(3, income.getCategoryId());
+            statement.setInt(4,income.getId());
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return false;
     }
-    public boolean deleteExpense(Integer id) {
+    public boolean deleteIncome(Integer id) {
         Connection conn = dataBaseService.getConnect();
         try {
             PreparedStatement statement = conn.prepareStatement(DELETE);
