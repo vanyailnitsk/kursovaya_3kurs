@@ -55,7 +55,7 @@
                 <label for="amount">Сумма:</label>
                 <input type="number" id="amount" name="amount" required>
 
-                <label for="source">Покупка:</label>
+                <label for="source">Источник:</label>
                 <input type="text" id="source" name="source" maxlength="50" required>
 
                 <label for="category_id">Категория:</label>
@@ -79,7 +79,7 @@
                 <label for="amount">Сумма:</label>
                 <input type="number" id="edit-amount" name="amount" required value="">
 
-                <label for="source">Покупка:</label>
+                <label for="source">Источник:</label>
                 <input type="text" id="edit-source" name="source" maxlength="50" required>
 
                 <label for="category_id">Категория:</label>

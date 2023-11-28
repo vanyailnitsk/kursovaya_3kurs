@@ -16,7 +16,7 @@
         <div class="categories-container">
             <c:forEach items="${expense_categories}" var="category_map">
                 <div class="category-card"
-                     onclick={openCreateExpenseModal('${category_map.key.name}',${category_map.key.id})}>
+                     onclick="openCreateExpenseModal('${category_map.key.name}',${category_map.key.id})">
                     <img class="category-image" src="/img/category.png" alt="${category_map.key.name}">
                     <div class="category-title">${category_map.key.name}</div>
                     <div class="category-amount">${category_map.value} ₽</div>
