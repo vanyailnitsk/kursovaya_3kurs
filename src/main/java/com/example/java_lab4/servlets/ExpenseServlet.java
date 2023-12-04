@@ -33,7 +33,7 @@ public class ExpenseServlet extends HttpServlet {
         req.getRequestDispatcher("/expense-history.jsp").forward(req,resp);
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         Expense expense =  new Gson().fromJson(requestBody, Expense.class);
         if (expenseRepository.addExpense(expense)) {
@@ -48,7 +48,7 @@ public class ExpenseServlet extends HttpServlet {
         }
     }
 
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp)  {
         int expenseId = Integer.parseInt(req.getParameter("id"));
         if (!expenseRepository.deleteExpense(expenseId)) {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -56,7 +56,7 @@ public class ExpenseServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         Expense expense =  new Gson().fromJson(requestBody, Expense.class);
         if (expenseRepository.editExpense(expense)) {
