@@ -1,6 +1,6 @@
-package com.example.java_lab4.service;
+package com.example.kursovaya.service;
 
-import com.example.java_lab4.service.db.UserRepository;
+import com.example.kursovaya.service.db.UserRepository;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

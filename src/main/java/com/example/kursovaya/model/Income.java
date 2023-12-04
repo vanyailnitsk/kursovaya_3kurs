@@ -1,4 +1,4 @@
-package com.example.java_lab4.model;
+package com.example.kursovaya.model;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;

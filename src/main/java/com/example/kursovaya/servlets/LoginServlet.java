@@ -1,7 +1,6 @@
-package com.example.java_lab4.servlets;
+package com.example.kursovaya.servlets;
 
-import com.example.java_lab4.model.User;
-import com.example.java_lab4.service.LoginService;
+import com.example.kursovaya.service.LoginService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

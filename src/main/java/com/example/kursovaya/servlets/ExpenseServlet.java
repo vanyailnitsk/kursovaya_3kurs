@@ -1,8 +1,8 @@
-package com.example.java_lab4.servlets;
+package com.example.kursovaya.servlets;
 
-import com.example.java_lab4.model.Expense;
-import com.example.java_lab4.service.db.ExpenseCategoryRepository;
-import com.example.java_lab4.service.db.ExpenseRepository;
+import com.example.kursovaya.model.Expense;
+import com.example.kursovaya.service.db.ExpenseCategoryRepository;
+import com.example.kursovaya.service.db.ExpenseRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

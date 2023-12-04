@@ -1,4 +1,4 @@
-package com.example.java_lab4.servlets;
+package com.example.kursovaya.servlets;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

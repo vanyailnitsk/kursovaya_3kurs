@@ -1,9 +1,8 @@
-package com.example.java_lab4.servlets;
+package com.example.kursovaya.servlets;
 
-import com.example.java_lab4.model.Expense;
-import com.example.java_lab4.model.Income;
-import com.example.java_lab4.service.db.IncomeCategoryRepository;
-import com.example.java_lab4.service.db.IncomeRepository;
+import com.example.kursovaya.model.Income;
+import com.example.kursovaya.service.db.IncomeCategoryRepository;
+import com.example.kursovaya.service.db.IncomeRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -12,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;

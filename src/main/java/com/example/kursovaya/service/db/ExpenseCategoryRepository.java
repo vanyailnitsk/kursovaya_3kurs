@@ -1,6 +1,6 @@
-package com.example.java_lab4.service.db;
+package com.example.kursovaya.service.db;
 
-import com.example.java_lab4.model.Category;
+import com.example.kursovaya.model.Category;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

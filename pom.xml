@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>java_lab4</artifactId>
+    <artifactId>kursovaya</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>java_lab4</name>
     <packaging>war</packaging>

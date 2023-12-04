@@ -1,4 +1,4 @@
-package com.example.java_lab4.model;
+package com.example.kursovaya.model;
 
 public class Category {
     private int id;

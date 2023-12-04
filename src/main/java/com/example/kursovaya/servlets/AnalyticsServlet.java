@@ -1,8 +1,8 @@
-package com.example.java_lab4.servlets;
+package com.example.kursovaya.servlets;
 
-import com.example.java_lab4.model.Category;
-import com.example.java_lab4.service.db.ExpenseRepository;
-import com.example.java_lab4.service.db.IncomeRepository;
+import com.example.kursovaya.model.Category;
+import com.example.kursovaya.service.db.ExpenseRepository;
+import com.example.kursovaya.service.db.IncomeRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

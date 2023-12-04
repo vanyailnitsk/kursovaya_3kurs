@@ -1,6 +1,4 @@
-package com.example.java_lab4.model;
-
-import javax.servlet.http.HttpServletRequest;
+package com.example.kursovaya.model;
 
 public class User {
     private int id;

@@ -1,13 +1,11 @@
-package com.example.java_lab4.service.db;
+package com.example.kursovaya.service.db;
 
-import com.example.java_lab4.model.User;
+import com.example.kursovaya.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserRepository {
     private final DataBaseService dataBaseService;
