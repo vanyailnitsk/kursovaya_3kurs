@@ -6,15 +6,16 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Login Page</h2>
+        <h2>Авторизация</h2>
         <form action="/login" method="post">
-            <label for="username">Username:</label>
+            <label for="username">Логин:</label>
             <input type="text" id="username" name="username" required>
             <br>
-            <label for="password">Password:</label>
+            <label for="password">Пароль:</label>
             <input type="password" id="password" name="password" required>
             <br>
-            <button type="submit">Login</button>
+            <button type="submit">Войти</button>
+            <p>Чтобы зарегистрироваться, нажмите &nbsp;<a href="/register">cюда</a></p>
         </form>
         <div class="error-message">${errorMessage}</div>
     </div>

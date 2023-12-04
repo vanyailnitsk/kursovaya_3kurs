@@ -6,20 +6,21 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Registration Page</h2>
+        <h2>Форма регистрации</h2>
         <form action="/register" method="post">
-            <label for="name">Name:</label>
+            <label for="name">Имя:</label>
             <input type="text" id="name" name="name" maxlength="50" required>
             <br>
-            <label for="login">Login:</label>
+            <label for="login">Логин:</label>
             <input type="text" id="login" name="login" maxlength="50" required>
             <br>
-            <label for="password">Password:</label>
+            <label for="password">Пароль:</label>
             <input type="password" id="password" name="password" maxlength="50" required>
             <br>
             <button type="submit">Register</button>
-            <div class="error-message">${errorMessage}</div>
+            <p>Уже зарегистрированы? &nbsp;<a href="/login">Вход</a></p>
         </form>
+        <div class="error-message">${errorMessage}</div>
     </div>
 </body>
 </html>
