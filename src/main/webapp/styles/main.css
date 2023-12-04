@@ -8,11 +8,10 @@ header {
     top:0;
     left: 0;
     height: 20%;
-    background-image: url("../img/alps.jpeg");
+    background-image: url("../img/header.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /*background-position-y: -50vh;*/
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -26,14 +25,6 @@ header h1 {
     color:white;
     text-shadow: 1px 1px 5px black;
     font-size: 40px;
-}
-footer {
-    background-color: black;
-    color: white;
-    padding-top: 10px;
-    text-align: center;
-    height: 50px;
-    width: 100%;
 }
 .sidebar {
     float:left;
@@ -61,15 +52,15 @@ footer {
     color: white;
 }
 div.content {
-    background-image: url("../img/background.jpeg");
-    background-repeat: no-repeat;
+    background-image: url("../img/back.jpg");
+    background-repeat: repeat-y;
     background-size: cover;
     background-position: center;
     margin-left: 15%;
     margin-top: 20vh;
     padding-right: 15px;
     padding-left: 15px;
-    height: 100%;
+    min-height: 100vh;
 }
 div.content p {
     font-size:15px;
