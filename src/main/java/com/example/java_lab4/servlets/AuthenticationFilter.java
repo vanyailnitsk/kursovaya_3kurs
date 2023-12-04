@@ -17,10 +17,14 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(false);
         boolean isLoggedIn = (session != null && session.getAttribute("user_id") != null);
-        if (!isLoggedIn && !httpRequest.getRequestURI().endsWith("/login")) {
+        String requestURI = httpRequest.getRequestURI();
+        if (!isLoggedIn && !requestURI.endsWith("/login") && !requestURI.endsWith(".css") &&
+                !requestURI.endsWith("/register")) {
             httpResponse.sendRedirect("/login");
             return;
         }
         chain.doFilter(request, response);
     }
+
+
 }
