@@ -1,6 +1,6 @@
-package com.example.kursovaya.service;
+package com.example.ilnitskiy_9.service;
 
-import com.example.kursovaya.service.db.UserRepository;
+import com.example.ilnitskiy_9.service.db.UserRepository;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

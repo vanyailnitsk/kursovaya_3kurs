@@ -1,6 +1,6 @@
-package com.example.kursovaya.service.db;
+package com.example.ilnitskiy_9.service.db;
 
-import com.example.kursovaya.model.User;
+import com.example.ilnitskiy_9.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

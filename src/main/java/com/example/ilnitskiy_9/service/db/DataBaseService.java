@@ -1,4 +1,4 @@
-package com.example.kursovaya.service.db;
+package com.example.ilnitskiy_9.service.db;
 
 import java.sql.*;
 

@@ -1,8 +1,8 @@
-package com.example.kursovaya.servlets;
+package com.example.ilnitskiy_9.servlets;
 
-import com.example.kursovaya.model.Expense;
-import com.example.kursovaya.service.db.ExpenseCategoryRepository;
-import com.example.kursovaya.service.db.ExpenseRepository;
+import com.example.ilnitskiy_9.model.Expense;
+import com.example.ilnitskiy_9.service.db.ExpenseCategoryRepository;
+import com.example.ilnitskiy_9.service.db.ExpenseRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

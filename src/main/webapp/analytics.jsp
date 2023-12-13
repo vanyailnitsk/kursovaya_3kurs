@@ -1,5 +1,5 @@
 <%@ page import="com.google.gson.Gson" %>
-<%@ page import="com.example.kursovaya.model.Category" %>
+<%@ page import="com.example.ilnitskiy_9.model.Category" %>
 <%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -1,7 +1,7 @@
-package com.example.kursovaya.servlets;
+package com.example.ilnitskiy_9.servlets;
 
-import com.example.kursovaya.model.Category;
-import com.example.kursovaya.service.db.ExpenseCategoryRepository;
+import com.example.ilnitskiy_9.model.Category;
+import com.example.ilnitskiy_9.service.db.ExpenseCategoryRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

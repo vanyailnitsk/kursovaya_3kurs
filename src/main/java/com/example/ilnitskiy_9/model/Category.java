@@ -1,4 +1,4 @@
-package com.example.kursovaya.model;
+package com.example.ilnitskiy_9.model;
 
 public class Category {
     private int id;

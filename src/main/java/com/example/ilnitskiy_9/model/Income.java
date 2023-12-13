@@ -1,9 +1,9 @@
-package com.example.kursovaya.model;
+package com.example.ilnitskiy_9.model;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-public class Expense {
+public class Income {
     private int id;
     private int userId;
     private int amount;
@@ -13,7 +13,7 @@ public class Expense {
     private Timestamp timestamp;
     private String dateFormatted;
 
-    public Expense(int id, int user_id, int amount, String source, int categoryId, Timestamp timestamp) {
+    public Income(int id, int user_id, int amount, String source, int categoryId, Timestamp timestamp) {
         this.id = id;
         this.userId = user_id;
         this.amount = amount;

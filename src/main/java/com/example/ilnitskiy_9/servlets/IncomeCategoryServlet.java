@@ -1,7 +1,7 @@
-package com.example.kursovaya.servlets;
+package com.example.ilnitskiy_9.servlets;
 
-import com.example.kursovaya.model.Category;
-import com.example.kursovaya.service.db.IncomeCategoryRepository;
+import com.example.ilnitskiy_9.model.Category;
+import com.example.ilnitskiy_9.service.db.IncomeCategoryRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

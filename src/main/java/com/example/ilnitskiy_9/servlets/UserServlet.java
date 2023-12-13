@@ -1,10 +1,10 @@
-package com.example.kursovaya.servlets;
+package com.example.ilnitskiy_9.servlets;
 
-import com.example.kursovaya.model.Expense;
-import com.example.kursovaya.model.User;
-import com.example.kursovaya.service.db.ExpenseCategoryRepository;
-import com.example.kursovaya.service.db.ExpenseRepository;
-import com.example.kursovaya.service.db.UserRepository;
+import com.example.ilnitskiy_9.model.Expense;
+import com.example.ilnitskiy_9.model.User;
+import com.example.ilnitskiy_9.service.db.ExpenseCategoryRepository;
+import com.example.ilnitskiy_9.service.db.ExpenseRepository;
+import com.example.ilnitskiy_9.service.db.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
